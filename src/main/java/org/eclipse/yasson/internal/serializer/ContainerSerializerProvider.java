@@ -13,19 +13,20 @@
 package org.eclipse.yasson.internal.serializer;
 
 import jakarta.json.bind.serializer.JsonbSerializer;
-
-import org.eclipse.yasson.internal.model.JsonbPropertyInfo;
+import java.lang.reflect.Type;
 
 /**
  * Provides container serializer instance.
  */
+@FunctionalInterface
 public interface ContainerSerializerProvider {
 
     /**
      * Provides container serializer instance for given property.
      *
-     * @param propertyInfo Property to create serializer for.
+     * @param runtimeType class type
+     * @param wrapper wrapped item
      * @return Serializer instance.
      */
-    JsonbSerializer<?> provideSerializer(JsonbPropertyInfo propertyInfo);
+    JsonbSerializer<?> provideSerializer(Type runtimeType, CurrentItem<?> wrapper);
 }
